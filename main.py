@@ -4,6 +4,8 @@ import sys
 from settings import *
 from map import Map
 from player import Player
+from raycasting import RayCasting
+
 
 class Game:
     def __init__(self):
@@ -17,9 +19,11 @@ class Game:
     def new_game(self):
         self.map = Map(self)
         self.player = Player(self)
+        self.raycasting = RayCasting(self)
 
     def update(self):
         self.player.update()
+        self.raycasting.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f"{self.clock.get_fps():.1f}")
