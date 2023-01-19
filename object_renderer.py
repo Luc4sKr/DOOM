@@ -41,3 +41,4 @@ class ObjectReender:
             4: self.get_texture("resources/textures/4.png"),
             5: self.get_texture("resources/textures/5.png"),
         }
+    
