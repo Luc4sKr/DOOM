@@ -11,6 +11,7 @@ from object_renderer import ObjectReender
 class Game:
     def __init__(self):
         pygame.init()
+        pygame.mouse.set_visible(False)
 
         self.screen = pygame.display.set_mode(RESOLUTION)
         self.clock = pygame.time.Clock()
