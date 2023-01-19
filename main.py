@@ -32,7 +32,7 @@ class Game:
         pygame.display.set_caption(f"{self.clock.get_fps():.1f}")
 
     def draw(self):
-        self.screen.fill(BLACK)
+        #self.screen.fill(BLACK)
         self.object_render.draw()
         #self.map.draw()
         #self.player.draw()
