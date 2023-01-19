@@ -1,5 +1,4 @@
 import pygame
-import math
 
 from settings import *
 
@@ -57,8 +56,21 @@ class RayCasting:
             else:
                 depth = depth_hor
 
+            # remove fishbowl effect
+            depth *= math.cos(self.game.player.angle - ray_angle)
+
+            # projection
+            proj_height = SCREEN_DISTANCE / (depth + 0.0001)  # A small value is added to avoid division by 0
+
+            # draw walls
+            color = [255 / (1 + depth ** 5 * 0.00002)] * 3
+            pygame.draw.rect(self.game.screen, color,
+                             (ray * SCALE, HALF_HEIGHT - proj_height // 2, SCALE, proj_height))
+
+            ''' -- Draws the 2D field of view --
             pygame.draw.line(self.game.screen, YELLOW, (100 * ox, 100 * oy),
                              (100 * ox + 100 * depth * cos_a, 100 * oy + 100 * depth * sin_a), 2)
+            '''
 
             ray_angle += DELTA_ANGLE
 
