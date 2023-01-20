@@ -1,6 +1,7 @@
 import math
 
 # Game settings
+#RESOLUTION = WIDTH, HEIGHT = pygame.display.Info().current_w, pygame.display.Info().current_h
 RESOLUTION = WIDTH, HEIGHT = 1280, 720
 HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
