@@ -10,6 +10,7 @@ from object_renderer import ObjectReender
 from sprite_object import SpriteObject, AnimatedSprite
 from object_handler import ObjectHandler
 from weapon import Weapon
+from pathfinding import PathFinding
 
 
 class Game:
@@ -33,6 +34,7 @@ class Game:
         self.object_handler = ObjectHandler(self)
         self.weapon = Weapon(self)
         self.sound = Sound(self)
+        self.pathfinding = PathFinding(self)
 
         """
         self.static_sprite = SpriteObject(self)
