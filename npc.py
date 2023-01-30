@@ -30,6 +30,7 @@ class NPC(AnimatedSprite):
         self.check_animation_time()
         self.get_sprite()
         self.run_logic()
+
         #self.draw_ray_cast()
 
     def check_wall(self, x, y):
@@ -84,6 +85,11 @@ class NPC(AnimatedSprite):
                 self.animate_pain()
 
             elif self.ray_cast_value:
+                self.player_search_trigger = True
+                self.animate(self.walk_images)
+                self.movement()
+
+            elif self.player_search_trigger:
                 self.animate(self.walk_images)
                 self.movement()
 
