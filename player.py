@@ -10,6 +10,12 @@ class Player:
         self.x, self.y = PLAYER_POS
         self.angle = PLAYER_ANGLE
         self.shot = False
+        self.healt = PLAYER_MAX_HEALT
+
+    def get_damage(self, damage):
+        self.healt -= damage
+        self.game.object_render.player_damage()
+        self.game.sound.player_pain.play()
 
     def single_fire_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:

@@ -12,9 +12,26 @@ class ObjectReender:
         self.sky_image = self.get_texture("resources/textures/sky.png", (WIDTH, HALF_HEIGHT))
         self.sky_offset = 0
 
+        self.blood_screen = self.get_texture("resources/textures/blood_screen.png", RESOLUTION)
+
+        self.digit_size = 90
+        self.digit_images = [self.get_texture(f"resources/textures/digits/{i}.png", [self.digit_size] * 2)
+                             for i in range(11)]
+        self.digits = dict(zip(map(str, range(11)), self.digit_images))
+
     def draw(self):
         self.draw_background()
         self.render_game_objects()
+        self.draw_player_health()
+
+    def draw_player_health(self):
+        healt = str(self.game.player.healt)
+        for i, char in enumerate(healt):
+            self.screen.blit(self.digits[char], (i * self.digit_size, 0))
+        self.screen.blit(self.digits["10"], ((i + 1) * self.digit_size, 0))
+
+    def player_damage(self):
+        self.screen.blit(self.blood_screen, (0, 0))
 
     def draw_background(self):
         self.sky_offset = (self.sky_offset + 4.0 * self.game.player.rel) % WIDTH
@@ -32,7 +49,7 @@ class ObjectReender:
 
     @staticmethod
     def get_texture(path, res=(TEXTURE_SIZE, TEXTURE_SIZE)):
-        texture = pygame.image.load(path).convert()
+        texture = pygame.image.load(path).convert_alpha()
         return pygame.transform.scale(texture, res)
 
     def load_wall_texures(self):
